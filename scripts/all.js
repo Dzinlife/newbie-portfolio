@@ -312,7 +312,7 @@ $(document).ready(function () {
 			var transY = (height - height * ratio)/2;
 			
 			$this.find(".works-focus-wrapper-inner").css({
-				"transform": "translateZ(0) scale(" + ratio + ")",
+				"transform": "translate3d(0,0,0) scale(" + ratio + ")",
 				"width": width,
 				"height": height,
 			});
@@ -324,7 +324,7 @@ $(document).ready(function () {
 			$this.find(".works-focus-wrapper").css({
 				"width" : width,
 				"height" : windowHeight,
-				"transform": "translateZ(0)  translateX(" + transX + "px)",
+				"transform": "translate3d(" + transX + "px,0,0)",
 				"transX" : transX,
 			});
 			$this.find(".works-focus-wrapper").data("transX", transX)
@@ -395,9 +395,9 @@ $(document).ready(function () {
 				periodOpened = null;
 				
 				drawPeriodBaseline_line.animate(400).scale(1,1);//baseline复位
-				$(".period").css("transform", "translateZ(0)");//横向坐标复位
+				$(".period").css("transform", "translate3d(0,0,0)");//横向坐标复位
 				$(".year-rular, .year").removeAttr("style");	
-				$("#resume-section-2").css("transform", "translateZ(0)");
+				$("#resume-section-2").css("transform", "translate3d(0,0,0)");
 			};
 			periodOff();
 			
@@ -420,7 +420,7 @@ $(document).ready(function () {
 			
 			var periodSubtitleSpaceLeft = $this.find(".period-company").width() - $this.find(".period-company-wrapper").width();
 			$this.find(".period-company").css({
-					"transform": "translateZ(0) translateX(" + periodSubtitleSpaceLeft + "px)",
+					"transform": "translate3d(" + periodSubtitleSpaceLeft + "px,0,0)",
 				});//副标题左对齐
 				
 						
@@ -448,9 +448,9 @@ $(document).ready(function () {
 			$this.prevAll().each(function () {
 				$(this).data("currentPos", $(this).data().posLeft);
 			})//当前位置记录
-			$this.prevAll().css("transform","translateZ(0)" );
+			$this.prevAll().css("transform","translate3d(0,0,0)" );
 			$this.data("currentPos", $(periodOpened).data().posLeft + periodOpenedIncrement);//当前位置记录
-			$this.css("transform","translateZ(0) translateX(" + periodOpenedIncrement + "px)" );
+			$this.css("transform","translate3d(" + periodOpenedIncrement + "px,0,0)" );
 			if (neighborDistanceRight < periodOpenedWidth) {
 				var nextAllIncrement = periodOpenedWidth - neighborDistanceRight + periodOpenedIncrement;
 				if ($this[0] === lastElement){
@@ -459,17 +459,17 @@ $(document).ready(function () {
 				
 				$this.nextAll().each(function () {
 					$(this).data("currentPos", $(this).data().posLeft + nextAllIncrement);
-					$(this).css("transform","translateZ(0) translateX(" + nextAllIncrement + "px)");
+					$(this).css("transform","translate3d(" + nextAllIncrement + "px,0,0)");
 				})
 			}
 			
-			$("#resume-section-2").css("transform", "translateZ(0) translateX(" + nextAllIncrement + "px)");
+			$("#resume-section-2").css("transform", "translate3d(" + nextAllIncrement + "px,0,0)");
 			drawPeriodBaseline_line.animate(400).scale( (700 + nextAllIncrement)/700, 1);
 			
 			
 			//时间戳位移
-			$(".year-2012").css("transform", "translateX(" + (($("#period-3").data().currentPos - $("#period-2").data().currentPos) * 0.375 + $("#period-2").data().currentPos) + "px)");
-			$(".year-2013").css("transform", "translateX(" + ($("#period-3").data().currentPos + 150) + "px)");
+			$(".year-2012").css("transform", "translateX(" + (($("#period-3").data().currentPos - $("#period-2").data().currentPos) * 0.375 + $("#period-2").data().currentPos) + "px,0,0)");
+			$(".year-2013").css("transform", "translate3d(" + ($("#period-3").data().currentPos + 150) + "px,0,0)");
 			
 			periodIntervalControl().open();
 			
@@ -485,7 +485,7 @@ $(document).ready(function () {
 				"opacity": 0,
 				"pointer-events": "none",
 			});
-			$this.find(".period-company").css("transform", "translateZ(0)");//副标题右对齐复位
+			$this.find(".period-company").css("transform", "translate3d(0,0,0)");//副标题右对齐复位
 			periodIntervalControl().close();
 		}
 		
@@ -577,7 +577,7 @@ $(document).ready(function () {
 			var tabPos = $this.position().left - 320 + $this.width()/2;
 			$("#skills-detail-container").css("opacity", "1");
 			$("#skills-tab-pointer").css({
-				"transform": "translateX(" + tabPos + "px)"
+				"transform": "translate3d(" + tabPos + "px,0,0)"
 			});
 			$(".skills-tab").removeClass("skills-tab-focus");
 			$this.siblings().css("opacity", "0.4");
@@ -752,7 +752,9 @@ $(document).ready(function () {
 			$("#focus-nav").fadeIn(300);
 			$("#scroller-1-inner").on('mousewheel', function(e){		
 				e.preventDefault();
-			})
+			});
+			
+			worksFocusWrapperInner.css("opacity", 0.4);
 		}
 		_method.galleryOff = function () {
 			$("#black").css("opacity", "0");
@@ -763,6 +765,7 @@ $(document).ready(function () {
 			dockBottom().close();
 			$("#scroller-1-inner").unbind('mousewheel');
 			preventMacBackFwdGesture($('#scroller-1-inner'));
+			worksFocusWrapperInner.css("opacity", 0.66);
 		}
 		
 		_method.option = option;
@@ -789,7 +792,7 @@ $(document).ready(function () {
 				$this.removeClass("works-focus-scale");
 				$this.css({
 					"transition": "opacity" + option.duration/1000 + "s ease-out",
-					"opacity": "0.66",
+					"opacity": "0.4",
 					});
 				focusWorksAdjacent($this).close();
 				setTimeout(function () {
@@ -807,7 +810,7 @@ $(document).ready(function () {
 			dockTransY += scrollYDistance;
 			var _method = {};
 			_method.open = function () {
-				$("#dock-wrapper").css("transform", "translateY(" + dockTransY + "px) translateZ(0)");
+				$("#dock-wrapper").css("transform", "translate3d(0," + dockTransY + "px,0)");
 			}
 			_method.close = function () {
 				$("#dock-wrapper").removeAttr("style");
@@ -835,7 +838,7 @@ $(document).ready(function () {
 				});
 				if ($this.data().height < windowHeight - 40 && $this.data().width < windowWidth) {
 					thisWorksFocusWrapper.css({
-						"transform" : "translateZ(0) translateX(" + transX + "px) " + "translateY(" + transY + "px)"
+						"transform" : "translate3d(" + transX + "px," + transY + "px,0)",
 					});
 				}else {
 					scroll = true;
@@ -881,7 +884,7 @@ $(document).ready(function () {
 //						"width" : wrapperWidth,
 //						"height" : wrapperHeight,
 //						"overflow" : "scroll",
-						"transform" : "translateZ(0) translateX(" + wrapperTransX + "px) " + "translateY(" + wrapperTransY + "px)",
+						"transform" : "translate3d(" + wrapperTransX + "px," + wrapperTransY + "px,0)",
 					});
 					
 //					$this.wrapperOpenDelay = setTimeout(function () {
@@ -896,7 +899,7 @@ $(document).ready(function () {
 //						"width" : scrollWidth,
 //						"height" : scrollHeight,
 //					});
-					thisWorksFocusScroller.css("transform", "translateZ(0) translateX(" + scrollerTransX + "px) translateY(" + scrollerTransY + "px)");
+					thisWorksFocusScroller.css("transform", "translate3d(" + scrollerTransX + "px," + scrollerTransY + "px,0)");
 //					thisWorksFocusWrapper.scrollTop(0);
 					
 					
@@ -904,68 +907,30 @@ $(document).ready(function () {
 					var scrollY = 0;
 					var scrollYMax = $this.data().height - windowHeight + 72;
 					var scrollXMax = $this.data().width - windowWidth + 32;
-					
-//					$this.mousewheel(function(event, delta, deltaX, deltaY) {
-//					    if (Math.abs(deltaX) < Math.abs(deltaY)) {
-//					    	scrollDirection = "vertical";
-//					    }else if (deltaX > 0) {
-//					    	scrollDirection = "right";
-//					    }else if (deltaX < 0) {
-//					    	scrollDirection = "left";
-//					    };
-//					});
-//					$(window).on("mousemove", function (e) {
-//						
-//						var csrX = e.clientX;
-//						var csrY = e.clientY;
-//						
-//						if (scrollerY == true ) {
-//							scrollY = $.easing.easeOutQuad(0, csrY - centerY + windowHeight/2, 0, scrollYMax, windowHeight);
-//
-//						}
-//						
-//						if (scrollerX == true) {
-//							scrollX = $.easing.easeOutQuad(0, csrX - centerX + windowWidth/2, -scrollXMax/2, scrollXMax, windowWidth);	
-//						}
-//					})
-//					
-//					function scrollUpdate () {
-//						if ($("#dock-wrapper").is(":hover")) {
-//							return;
-//						};
-//						
-//												
-//						thisWorksFocusScroller.css({
-//							"transform": "translateZ(0) translateX(" + (scrollerTransX + -scrollX) + "px) translateY(" + (scrollerTransY + -scrollY) + "px)",
-//						});
-//					}
-					
-//					$(window).on( 'mousemove', $.throttle(100,true,scrollUpdate) );
-					
 					thisWorksFocusScroller.on("mousewheel", function (event, delta, deltaX, deltaY) {
 						if (scrollerY === true) {
 							scrollY -= deltaY;
 							if (scrollY < 0) {
-								scrollY = 0;
+								scrollY += -scrollY/2;
 							};
 							if (scrollY > scrollYMax) {
-								scrollY = scrollYMax
+								scrollY -= (scrollY - scrollYMax)/2
 							};
 						};
 						
 						if (scrollerX === true) {
 							scrollX += deltaX;
 							if (scrollX < -scrollXMax) {
-								scrollX = -scrollXMax;
+								scrollX += (-scrollXMax - scrollX)/2;
 							};
 							if (scrollX > scrollXMax) {
-								scrollX = scrollXMax
+								scrollX -= (scrollX - scrollXMax)/2;
 							};
 						};
 						
 						thisWorksFocusScroller.css({
 							"transition" : "none",
-							"transform": "translateZ(0) translateX(" + (scrollerTransX + -scrollX) + "px) translateY(" + (scrollerTransY + -scrollY) + "px)",
+							"transform": "translate3d(" + (scrollerTransX + -scrollX) + "px," + (scrollerTransY + -scrollY) + "px,0)",
 						});
 					})
 					
@@ -982,16 +947,16 @@ $(document).ready(function () {
 				thisWorksFocusWrapper.css({
 //					"width": $this.data().width,
 //					"height": $this.data().height,
-					"transform": "translateZ(0) translateX(" + transX + "px)",
+					"transform": "translate3d(" + transX + "px,0,0)",
 				});
 				$this.css({
-					"transform": "scale(" + scale + ")",
+					"transform": "translate3d(0,0,0) scale(" + scale + ")",
 					"transition": option.duration/1000 + "s ease-out",
 					"cursor": "-webkit-zoom-in",
 				});
 				$(window).unbind("mousemove");
 				$this.parents(".works-focus-scroller").css({
-					"transform": "translateZ(0)",
+					"transform": "translate3d(0,0,0)",
 					"transition": "0.3s ease-out",
 				});
 				
@@ -1013,42 +978,42 @@ $(document).ready(function () {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-1).data().scale;
 					worksFocusWrapperInner.eq(thisIndex - 1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) translateX(" + -trans + "px)" + "scale(" + scalePrev + ")",
+						"transform": "translate3d(" + -trans + "px,0,0)" + "scale(" + scalePrev + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-2).data().scale;
 					worksFocusWrapperInner.eq(thisIndex - 2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) translateX(" + -trans + "px)" + "scale(" + scalePrev + ")",
+						"transform": "translate3d(" + -trans + "px,0,0)" + "scale(" + scalePrev + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-3).data().scale;
 					worksFocusWrapperInner.eq(thisIndex - 3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) translateX(" + -trans + "px)" + "scale(" + scalePrev + ")",
+						"transform": "translate3d(" + -trans + "px,0,0)" + "scale(" + scalePrev + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+1).data().scale;
 					worksFocusWrapperInner.eq(thisIndex+1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) translateX(" + trans + "px)" + "scale(" + scaleNext + ")",
+						"transform": "translate3d(" + trans + "px,0,0)" + "scale(" + scaleNext + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+2).data().scale;
 					worksFocusWrapperInner.eq(thisIndex+2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) translateX(" + trans + "px)" + "scale(" + scaleNext + ")",
+						"transform": "translate3d(" + trans + "px,0,0)" + "scale(" + scaleNext + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+3).data().scale;
 					worksFocusWrapperInner.eq(thisIndex+3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) translateX(" + trans + "px)" + "scale(" + scaleNext + ")",
+						"transform": "translate3d(" + trans + "px,0,0)" + "scale(" + scaleNext + ")",
 						});
 				};
 			}
@@ -1057,42 +1022,42 @@ $(document).ready(function () {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-1).data().scale;
 					worksFocusWrapperInner.eq(thisIndex - 1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) scale(" + scalePrev + ")",
+						"transform": "translate3d(0,0,0) scale(" + scalePrev + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-2).data().scale;
 					worksFocusWrapperInner.eq(thisIndex - 2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) scale(" + scalePrev + ")",
+						"transform": "translate3d(0,0,0) scale(" + scalePrev + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-3).data().scale;
 					worksFocusWrapperInner.eq(thisIndex - 3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) scale(" + scalePrev + ")",
+						"transform": "translate3d(0,0,0) scale(" + scalePrev + ")",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+1).data().scale;
 					worksFocusWrapperInner.eq(thisIndex+1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) scale(" + scaleNext + ")",
+						"transform": "translate3d(0,0,0) scale(" + scaleNext + ")",
 					});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+2).data().scale;
 					worksFocusWrapperInner.eq(thisIndex+2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) scale(" + scaleNext + ")",
+						"transform": "translate3d(0,0,0) scale(" + scaleNext + ")",
 					});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+3).data().scale;
 					worksFocusWrapperInner.eq(thisIndex+3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translateZ(0) scale(" + scaleNext + ")",
+						"transform": "translate3d(0,0,0) scale(" + scaleNext + ")",
 					});
 				};
 			}
@@ -1182,7 +1147,7 @@ $(document).ready(function () {
 				}
 				
 				$this.css({
-					"transform": "translateX(" + iterateTransOrigin + "px) scale(" + scale/2 + ") translateZ(0)",
+					"transform": "translate3d(" + iterateTransOrigin + "px,0,0) scale(" + scale/2 + ")",
 				});
 				
 				iterateTransOrigin = dockCellWidth/2 * (scale-1) - iterateTransOrigin;
@@ -1204,7 +1169,7 @@ $(document).ready(function () {
 					var iterateTran = iterateTrans + dockCellWidth/2  * (scale - 1);
 					iterateTrans += dockCellWidth  * (scale - 1);
 					iterateObj.css({
-						"transform": "translateX(" + -iterateTran + "px) scale(" + scale/2 + ") translateZ(0)",
+						"transform": "translate3d(" + -iterateTran + "px,0,0) scale(" + scale/2 + ")",
 					});
 					if (iterateObj.prev().length === 0) {
 						i = false;
@@ -1233,7 +1198,7 @@ $(document).ready(function () {
 					var iterateTran = iterateTrans + dockCellWidth/2  * (scale - 1);
 					iterateTrans += dockCellWidth * (scale - 1);
 					iterateObj.css({
-						"transform": "translateX(" + iterateTran + "px) scale(" + scale/2 + ") translateZ(0)",
+						"transform": "translate3d(" + iterateTran + "px,0,0) scale(" + scale/2 + ")",
 					});
 					if (iterateObj.next().length === 0) {
 						i = false;
@@ -1259,7 +1224,7 @@ $(document).ready(function () {
 			$("#dock").css({
 				"transition": "0.3s ease-in-out"
 			});
-			$(".dock-cell").css("transform", "scale(0.5) translateZ(0)");
+			$(".dock-cell").css("transform", "translate3d(0,0,0) scale(0.5)");
 		}
 		
 		return _method;
@@ -1358,7 +1323,7 @@ $(document).ready(function () {
 					worksFocus(target, {scroll: false, zoom: true, duration:duration, dockUpdate: true}).play();
 					clearInterval(timer);
 				}else {
-					worksFocus(target, {scroll: false, zoom: false , lightup: true, duration:duration, dockUpdate: true}).play();
+					worksFocus(target, {scroll: false, zoom: false , lightup: false, duration:duration, dockUpdate: true}).play();
 					timer = setTimeout(motion, duration);
 				};
 				

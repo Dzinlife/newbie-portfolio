@@ -43,7 +43,7 @@ h2{
 	right: -10000px;
 	bottom: -1000px;
 	background-color: rgba(0,0,0,0.5);
-	z-index: 3;
+	/*z-index: 1;*/
 	pointer-events: none;
 	opacity: 0;
 	.transition(0.3s);
@@ -436,7 +436,7 @@ h2{
 	color: black;
 	margin-right: 52px;
 	cursor: pointer;
-	.transform(scale(0.9));
+	.transform(translateZ(0) scale(0.9));
 	.transition(all 0.4s ease-out 0s);
 	opacity: 0.5;
 	&:last-child{
@@ -452,7 +452,7 @@ h2{
 .skills-tab-focus{
 	color: white;
 	text-shadow: 0 0 20px rgba(0,0,0,0.06);
-	.transform(scale(1.1));
+	.transform(translateZ(0) scale(1.1));
 	.transition(all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.975) 0s);
 }
 
@@ -601,7 +601,6 @@ h2{
 
 
 .works-focus-wrapper{
-	.transform(translateZ(0));
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -610,12 +609,10 @@ h2{
 }
 
 .works-focus-scroller{
-	.transform(translateZ(0));
 	pointer-events: none;
 }
 
 .works-focus-wrapper-inner{
-	.transform(translateZ(0));	
 	opacity: 0.66;
 	.transition(opacity 0.2s ease-out);
 	.transform-origin(top);
