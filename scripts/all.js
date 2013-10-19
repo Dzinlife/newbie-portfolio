@@ -297,7 +297,7 @@ $(document).ready(function () {
 		$(this).width($(this).width())
 	})
 	
-//	var arrPosCenterX = new Array($(".dock-cell").length);
+	var arrPosCenterX = new Array($(".dock-cell").length);
 
 	FastClick.attach(document.body);
 	$(window).resize(function() {init();})
@@ -360,9 +360,9 @@ $(document).ready(function () {
 			})
 		})
 		
-//		for (var i = 0; i < arrPosCenterX.length; i++) {
-//			arrPosCenterX[i] = $(".dock-cell").eq(i).data().posCenterX;
-//		}
+		for (var i = 0; i < arrPosCenterX.length; i++) {
+			arrPosCenterX[i] = $(".dock-cell").eq(i).data().posCenterX;
+		}
 		
 	}
 	
@@ -1100,33 +1100,33 @@ $(document).ready(function () {
 			}
 			
 			
-			var $this = hoveredCell;
+//			var $this = hoveredCell;
+//			if (option.indexMode) {
+//				csrX = $(".dock-cell").eq(csrX).data().posCenterX;
+//			} else if (option.normalize) {
+//				csrX = $this.data().posCenterX;
+//			} else {
+//				csrX = csrX + dockCellWidth/2;
+//			}
+			
+			var nearestCellIndex = 0; 
+			var nearestDistance = windowWidth;
+			for (var i = 0; i < arrPosCenterX.length; i++) {
+				if ( Math.abs(csrX + dockCellWidth/2 - arrPosCenterX[i]) < nearestDistance) {
+					nearestDistance = Math.abs(arrPosCenterX[i] - csrX);
+					nearestCellIndex = i;
+				}
+			}
+			
 			if (option.indexMode) {
 				csrX = $(".dock-cell").eq(csrX).data().posCenterX;
 			} else if (option.normalize) {
-				csrX = $this.data().posCenterX;
+				csrX = $(".dock-cell").eq(nearestCellIndex).data().posCenterX;
 			} else {
 				csrX = csrX + dockCellWidth/2;
 			}
 			
-//			var nearestCellIndex = 0; 
-//			var nearestDistance = windowWidth;
-//			for (var i = 0; i < arrPosCenterX.length; i++) {
-//				if ( Math.abs(csrX + dockCellWidth/2 - arrPosCenterX[i]) < nearestDistance) {
-//					nearestDistance = Math.abs(arrPosCenterX[i] - csrX);
-//					nearestCellIndex = i;
-//				}
-//			}
-//			
-//			if (option.indexMode) {
-//				csrX = $(".dock-cell").eq(csrX).data().posCenterX;
-//			} else if (option.normalize) {
-//				csrX = $(".dock-cell").eq(nearestCellIndex).data().posCenterX;
-//			} else {
-//				csrX = csrX + dockCellWidth/2;
-//			}
-//			
-//			var $this = $(".dock-cell").eq(nearestCellIndex);
+			var $this = $(".dock-cell").eq(nearestCellIndex);
 			
 			if (transitionDelayStart && !option.indexMode) {
 				$("#dock").css("transition", "0.07s ease-in-out");
