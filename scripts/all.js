@@ -336,6 +336,7 @@ $(document).ready(function () {
 		$(this).css("background-image", "url(" + bgSrc + ")");
 		console.log(bgSrc);
 	})
+	$("<div id='works-wrapper-end'></div>").insertAfter($(".works-wrapper:last"));
 	
 	init();
 	function init() {
@@ -419,7 +420,7 @@ $(document).ready(function () {
 			
 			var periodSubtitleSpaceLeft = $this.find(".period-company").width() - $this.find(".period-company-wrapper").width();
 			$this.find(".period-company").css({
-					"transform": "translateX(" + periodSubtitleSpaceLeft + "px) translateZ(0)",
+					"transform": "translateZ(0) translateX(" + periodSubtitleSpaceLeft + "px)",
 				});//副标题左对齐
 				
 						
@@ -449,7 +450,7 @@ $(document).ready(function () {
 			})//当前位置记录
 			$this.prevAll().css("transform","translateZ(0)" );
 			$this.data("currentPos", $(periodOpened).data().posLeft + periodOpenedIncrement);//当前位置记录
-			$this.css("transform","translateX(" + periodOpenedIncrement + "px) translateZ(0)" );
+			$this.css("transform","translateZ(0) translateX(" + periodOpenedIncrement + "px)" );
 			if (neighborDistanceRight < periodOpenedWidth) {
 				var nextAllIncrement = periodOpenedWidth - neighborDistanceRight + periodOpenedIncrement;
 				if ($this[0] === lastElement){
@@ -458,11 +459,11 @@ $(document).ready(function () {
 				
 				$this.nextAll().each(function () {
 					$(this).data("currentPos", $(this).data().posLeft + nextAllIncrement);
-					$(this).css("transform","translateX(" + nextAllIncrement + "px) translateZ(0)");
+					$(this).css("transform","translateZ(0) translateX(" + nextAllIncrement + "px)");
 				})
 			}
 			
-			$("#resume-section-2").css("transform", "translateX(" + nextAllIncrement + "px) translateZ(0)");
+			$("#resume-section-2").css("transform", "translateZ(0) translateX(" + nextAllIncrement + "px)");
 			drawPeriodBaseline_line.animate(400).scale( (700 + nextAllIncrement)/700, 1);
 			
 			
