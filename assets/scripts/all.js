@@ -683,11 +683,11 @@ $(document).ready(function () {
 				}
 			};
 			
-			var thisMatrixValue = $this.parents(".works-wrapper").unmatrix();
-			var thisTransX = thisMatrixValue[0].x;
 			
-			scrollToPos = $this.parents(".works-wrapper").offset().left + $("#scroller-1-inner").scrollLeft() + $this.parents(".works-wrapper").width()/2 - windowWidth/2 - thisTransX;
 			if (option.scroll) {
+				var thisMatrixValue = $this.parents(".works-wrapper").unmatrix();
+				var thisTransX = thisMatrixValue[0].x;
+				scrollToPos = $this.parents(".works-wrapper").offset().left + $("#scroller-1-inner").scrollLeft() + $this.parents(".works-wrapper").width()/2 - windowWidth/2 - thisTransX;
 				$("#scroller-1-inner").scrollToMotion(scrollToPos,option.duration,{easing:"easeOutSine", direction:"x", interruptible:false});
 			};
 			if (worksOpened !== null) {
@@ -1287,7 +1287,6 @@ $(document).ready(function () {
 	
 	var timer;
 	function worksFocusMotion($this, velocity) {
-		var thisIndex = $(".works-wrapper").eq($this.index()).find(".works-focus-wrapper-inner");
 		var startIndex = $(".works-focus-wrapper-inner").index(worksOpened);
 		var endIndex = $this.index();
 		var steps = Math.abs(endIndex - startIndex);
@@ -1318,8 +1317,9 @@ $(document).ready(function () {
 			};
 			
 			motion();
-			
-			var scrollToPos = endWork.parents(".works-wrapper").offset().left + $("#scroller-1-inner").scrollLeft() + endWork.parents(".works-wrapper").width()/2 - windowWidth/2;
+			var thisMatrixValue = $(".works-wrapper").eq($this.index()).unmatrix();
+			var thisTransX = thisMatrixValue[0].x;
+			var scrollToPos = endWork.parents(".works-wrapper").offset().left + $("#scroller-1-inner").scrollLeft() + endWork.parents(".works-wrapper").width()/2 - windowWidth/2 - thisTransX;
 			var duration = Math.abs(startIndex - endIndex) * velocity;
 			$("#scroller-1-inner").scrollToMotion(scrollToPos,duration ,{easing: "easeInOutSine", direction:"x", interruptible: false});
 			
