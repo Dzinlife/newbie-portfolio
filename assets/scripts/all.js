@@ -780,7 +780,10 @@ $(document).ready(function () {
 			var _method = {};
 			_method.open = function () {
 				if (option.zoom) {
-					$this.addClass("works-focus-scale");
+					$this.css({
+						"transition": option.duration/1000 + "s ease-out",
+						"transform": "translate3d(0,0,0)",
+					});
 					focusScrollWrapper($this).open();
 					focusWorksAdjacent($this).open();
 					$this.parents(".works-wrapper").addClass("works-wrapper-z");
@@ -797,7 +800,6 @@ $(document).ready(function () {
 					"transition": option.duration/1000 + "s ease-out",
 					"opacity": "0.4",
 					});
-				$this.removeClass("works-focus-scale");
 				focusWorksAdjacent($this).close();
 				setTimeout(function () {
 					$this.parents(".works-wrapper").removeClass("works-wrapper-z");
@@ -888,8 +890,6 @@ $(document).ready(function () {
 						"transform" : "translate3d(" + wrapperTransX + "px," + wrapperTransY + "px,0)",
 					});
 					
-					var thisWorksFocusScroller = $this.parents(".works-focus-scroller");
-					thisWorksFocusScroller.css("transform", "translate3d(" + scrollerTransX + "px," + scrollerTransY + "px,0)");
 					
 					
 					var scrollX = 0;
@@ -916,7 +916,10 @@ $(document).ready(function () {
 								scrollX -= (scrollX - scrollXMax)/1;
 							};
 						};
-						
+						$this.css({
+							"transition" : "none",
+							"transform": "translate3d(" + (scrollerTransX + -scrollX) + "px," + (scrollerTransY + -scrollY) + "px,0) scale(1)",
+						});
 					})
 					
 					
@@ -958,88 +961,88 @@ $(document).ready(function () {
 				var trans = ( $this.data().width * (1 - scaleThis) )/2;
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-1).data().scale;
-					worksFocusWrapperInner.eq(thisIndex - 1).css({
+					worksWrapper.eq(thisIndex - 1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(" + -trans + "px,0,0)" + "scale(" + scalePrev + ")",
+						"transform": "translate3d(" + -trans + "px,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-2).data().scale;
-					worksFocusWrapperInner.eq(thisIndex - 2).css({
+					worksWrapper.eq(thisIndex - 2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(" + -trans + "px,0,0)" + "scale(" + scalePrev + ")",
+						"transform": "translate3d(" + -trans + "px,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-3).data().scale;
-					worksFocusWrapperInner.eq(thisIndex - 3).css({
+					worksWrapper.eq(thisIndex - 3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(" + -trans + "px,0,0)" + "scale(" + scalePrev + ")",
+						"transform": "translate3d(" + -trans + "px,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+1).data().scale;
-					worksFocusWrapperInner.eq(thisIndex+1).css({
+					worksWrapper.eq(thisIndex+1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(" + trans + "px,0,0)" + "scale(" + scaleNext + ")",
+						"transform": "translate3d(" + trans + "px,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+2).data().scale;
-					worksFocusWrapperInner.eq(thisIndex+2).css({
+					worksWrapper.eq(thisIndex+2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(" + trans + "px,0,0)" + "scale(" + scaleNext + ")",
+						"transform": "translate3d(" + trans + "px,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+3).data().scale;
-					worksFocusWrapperInner.eq(thisIndex+3).css({
+					worksWrapper.eq(thisIndex+3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(" + trans + "px,0,0)" + "scale(" + scaleNext + ")",
+						"transform": "translate3d(" + trans + "px,0,0)",
 						});
 				};
 			}
 			_method.close = function () {
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-1).data().scale;
-					worksFocusWrapperInner.eq(thisIndex - 1).css({
+					worksWrapper.eq(thisIndex - 1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(" + scalePrev + ")",
+						"transform": "translate3d(0,0,0) scale(1)",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-2).data().scale;
-					worksFocusWrapperInner.eq(thisIndex - 2).css({
+					worksWrapper.eq(thisIndex - 2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(" + scalePrev + ")",
+						"transform": "translate3d(0,0,0) scale(1)",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-3).data().scale;
-					worksFocusWrapperInner.eq(thisIndex - 3).css({
+					worksWrapper.eq(thisIndex - 3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(" + scalePrev + ")",
+						"transform": "translate3d(0,0,0) scale(1)",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+1).data().scale;
-					worksFocusWrapperInner.eq(thisIndex+1).css({
+					worksWrapper.eq(thisIndex+1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(" + scaleNext + ")",
+						"transform": "translate3d(0,0,0) scale(1)",
 					});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+2).data().scale;
-					worksFocusWrapperInner.eq(thisIndex+2).css({
+					worksWrapper.eq(thisIndex+2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(" + scaleNext + ")",
+						"transform": "translate3d(0,0,0) scale(1)",
 					});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+3).data().scale;
-					worksFocusWrapperInner.eq(thisIndex+3).css({
+					worksWrapper.eq(thisIndex+3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(" + scaleNext + ")",
+						"transform": "translate3d(0,0,0) scale(1)",
 					});
 				};
 			}
