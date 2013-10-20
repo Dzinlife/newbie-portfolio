@@ -322,10 +322,9 @@ $(document).ready(function () {
 				"scale": ratio
 			})
 			$this.find(".works-focus-wrapper").css({
-				"width" : width,
-				"height" : windowHeight,
-				"transform": "translate3d(" + transX + "px,0,0)",
-				"transX" : transX,
+				"width" : width * ratio,
+				"height" : windowHeight * ratio,
+//				"transform": "translate3d(" + transX + "px,0,0)",
 			});
 			$this.find(".works-focus-wrapper").data("transX", transX)
 		})
@@ -886,26 +885,11 @@ $(document).ready(function () {
 					}
 					
 					thisWorksFocusWrapper.css({
-//						"width" : wrapperWidth,
-//						"height" : wrapperHeight,
-//						"overflow" : "scroll",
 						"transform" : "translate3d(" + wrapperTransX + "px," + wrapperTransY + "px,0)",
 					});
 					
-//					$this.wrapperOpenDelay = setTimeout(function () {
-//						thisWorksFocusWrapper.css({
-//							"overflow" : "scroll",
-//						});
-//					}, option.duration);
-					
 					var thisWorksFocusScroller = $this.parents(".works-focus-scroller");
-//					
-//					thisWorksFocusScroller.css({
-//						"width" : scrollWidth,
-//						"height" : scrollHeight,
-//					});
 					thisWorksFocusScroller.css("transform", "translate3d(" + scrollerTransX + "px," + scrollerTransY + "px,0)");
-//					thisWorksFocusWrapper.scrollTop(0);
 					
 					
 					var scrollX = 0;
@@ -944,15 +928,12 @@ $(document).ready(function () {
 			}
 			_method.close = function () {
 				thisWorksFocusScroller.unbind("mousewheel");
-//				thisWorksFocusWrapper.scrollToMotion([0,0], 150, {easing:"easeInOutQuad", direction:"y"});
 				$this.scrollerCloseDelay = setTimeout(function () {
 					thisWorksFocusWrapper.css("overflow" , "inherit");
 				}, option.duration);
 				
 				thisWorksFocusWrapper.css({
-//					"width": $this.data().width,
-//					"height": $this.data().height,
-					"transform": "translate3d(" + transX + "px,0,0)",
+					"transform": "translate3d(0,0,0)",
 				});
 				$this.css({
 					"transform": "translate3d(0,0,0) scale(" + scale + ")",
