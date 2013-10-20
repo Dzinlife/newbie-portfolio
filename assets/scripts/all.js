@@ -901,7 +901,7 @@ $(document).ready(function () {
 					thisWorksFocusScroller.on("mousewheel", function (event, delta, deltaX, deltaY) {
 						event.prevertDefault;
 						if (scrollerY === true) {
-							scrollY -= deltaY;
+							scrollY -= 2 * deltaY;
 							if (scrollY < 0) {
 								scrollY += -scrollY/1;
 							};
@@ -911,7 +911,7 @@ $(document).ready(function () {
 						};
 						
 						if (scrollerX === true) {
-							scrollX += deltaX;
+							scrollX += 2 * deltaX;
 							if (scrollX < -scrollXMax) {
 								scrollX += (-scrollXMax - scrollX)/1;
 							};
