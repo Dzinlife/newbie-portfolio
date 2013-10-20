@@ -602,7 +602,8 @@ $(document).ready(function () {
 				"transform": "perspective(200) translateZ(0)",
 				"opacity": "1"
 			});
-			$("#skills-detail-container").removeAttr("style")		
+			$("#skills-detail-container").removeAttr("style")；
+			$("#skills-detail-container").css("opacity","0");	
 			skillOpened = null;
 		}
 	}
