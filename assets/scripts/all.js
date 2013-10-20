@@ -788,7 +788,7 @@ $(document).ready(function () {
 				};
 				if (option.lightup) {
 					$this.css({
-					"transition": "opacity" + option.duration/1000 + "s ease-out",
+					"transition": option.duration/1000 + "s ease-out",
 					"opacity": "1",
 					});
 				}
