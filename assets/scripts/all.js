@@ -794,11 +794,11 @@ $(document).ready(function () {
 				}
 			};
 			_method.close = function () {
-				$this.removeClass("works-focus-scale");
 				$this.css({
 					"transition": "opacity" + option.duration/1000 + "s ease-out",
 					"opacity": "0.4",
 					});
+				$this.removeClass("works-focus-scale");
 				focusWorksAdjacent($this).close();
 				setTimeout(function () {
 					$this.parents(".works-wrapper").removeClass("works-wrapper-z");
