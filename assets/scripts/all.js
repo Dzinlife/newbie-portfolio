@@ -795,7 +795,7 @@ $(document).ready(function () {
 			};
 			_method.close = function () {
 				$this.css({
-					"transition": "opacity" + option.duration/1000 + "s ease-out",
+					"transition": option.duration/1000 + "s ease-out",
 					"opacity": "0.4",
 					});
 				$this.removeClass("works-focus-scale");
