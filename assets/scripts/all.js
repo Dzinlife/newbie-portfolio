@@ -350,7 +350,7 @@ $(document).ready(function () {
 		
 		if (windowHeight > 1000) {
 			$("#scroller-1, #scroller-1-inner").height(function () {
-				return windowHeight + 300;
+				return windowHeight + 400;
 			});
 		}
 		//dock
