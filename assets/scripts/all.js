@@ -856,7 +856,7 @@ $(document).ready(function () {
 					
 					var wrapperWidth, scrollWidth, wrapperHeight, scrollHeight, wrapperTransX, wrapperTransY, scrollerTransX, scrollerTransY;
 					
-					if ($this.data().width < windowWidth) {
+					if ($this.data().width < windowWidth - 32) {
 						wrapperWidth = $this.data().width;
 						scrollWidth = $this.data().width;
 						wrapperTransX = transX;
@@ -865,7 +865,7 @@ $(document).ready(function () {
 						scrollerX = true;
 						wrapperWidth = windowWidth;
 						scrollWidth = $this.data().width + 16;
-						wrapperTransX = scrollToPos - $("#scroller-1-inner").scrollLeft() - $this.parents(".works-wrapper")[0].getBoundingClientRect().left;
+						wrapperTransX =  -$this.data().width * (1 - $this.data().scale)/2;
 						scrollerTransX =  -($this.data().width - windowWidth)/2;
 					}
 					
@@ -878,8 +878,7 @@ $(document).ready(function () {
 						scrollerY = true;
 						wrapperHeight = windowHeight;
 						scrollHeight = $this.data().height + 60;
-						wrapperTransY = -$this[0].getBoundingClientRect().top;
-						scrollerTransY = 16;
+						wrapperTransY = -$this[0].getBoundingClientRect().top + 16;
 					}
 					
 					
@@ -898,8 +897,9 @@ $(document).ready(function () {
 					var scrollX = 0;
 					var scrollY = 0;
 					var scrollYMax = $this.data().height - windowHeight + 72;
-					var scrollXMax = $this.data().width - windowWidth + 32;
+					var scrollXMax = ($this.data().width - windowWidth)/2 + 32;
 					thisWorksFocusScroller.on("mousewheel", function (event, delta, deltaX, deltaY) {
+						event.prevertDefault;
 						if (scrollerY === true) {
 							scrollY -= deltaY;
 							if (scrollY < 0) {
@@ -921,7 +921,7 @@ $(document).ready(function () {
 						};
 						$this.css({
 							"transition" : "none",
-							"transform": "translate3d(" + (scrollerTransX + -scrollX) + "px," + (scrollerTransY + -scrollY) + "px,0) scale(1)",
+							"transform": "translate3d(" + (-scrollX) + "px," + (-scrollY) + "px,0)",
 						});
 					})
 					
@@ -1010,42 +1010,42 @@ $(document).ready(function () {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-1).data().scale;
 					worksWrapper.eq(thisIndex - 1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(1)",
+						"transform": "translate3d(0,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-2).data().scale;
 					worksWrapper.eq(thisIndex - 2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(1)",
+						"transform": "translate3d(0,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").prev(".works-wrapper").length === 1) {
 					var scalePrev = worksFocusWrapperInner.eq(thisIndex-3).data().scale;
 					worksWrapper.eq(thisIndex - 3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(1)",
+						"transform": "translate3d(0,0,0)",
 						});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+1).data().scale;
 					worksWrapper.eq(thisIndex+1).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(1)",
+						"transform": "translate3d(0,0,0)",
 					});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+2).data().scale;
 					worksWrapper.eq(thisIndex+2).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(1)",
+						"transform": "translate3d(0,0,0)",
 					});
 				};
 				if ($this.parents(".works-wrapper").next(".works-wrapper").next(".works-wrapper").next(".works-wrapper").length === 1) {
 					var scaleNext = worksFocusWrapperInner.eq(thisIndex+3).data().scale;
 					worksWrapper.eq(thisIndex+3).css({
 						"transition": option.duration/1000 + "s ease-out",
-						"transform": "translate3d(0,0,0) scale(1)",
+						"transform": "translate3d(0,0,0)",
 					});
 				};
 			}
