@@ -348,9 +348,10 @@ $(document).ready(function () {
 		worksHeight = (worksHeight < worksHeightMin) ? 220 : worksHeight;
 		worksHeight = (worksHeight > worksHeightMax) ? 640 : worksHeight;				
 		
-		
-		if (windowHeight > 1200) {
-			$("#scroller-1, #scroller-1-inner").height(windowHeight);
+		if (windowHeight > 1000) {
+			$("#scroller-1, #scroller-1-inner").height(function () {
+				return windowHeight + 300;
+			});
 		}
 		//dock
 		$(".dock-cell").each(function () {
