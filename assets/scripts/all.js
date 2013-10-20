@@ -324,9 +324,9 @@ $(document).ready(function () {
 			$this.find(".works-focus-wrapper").css({
 				"width" : width * ratio,
 				"height" : windowHeight * ratio,
-//				"transform": "translate3d(" + transX + "px,0,0)",
 			});
-			$this.find(".works-focus-wrapper").data("transX", transX)
+			$this.find(".works-focus-wrapper").data("transX", transX);
+			
 		})
 	})
 	
@@ -682,8 +682,11 @@ $(document).ready(function () {
 					$("#wrapper").scrollToMotion(alignYScrollToPos, option.duration, {direction:'y', easing: 'easeOutQuad', interruptible:false});
 				}
 			};
-						
-			scrollToPos = $this.parents(".works-wrapper").offset().left + $("#scroller-1-inner").scrollLeft() + $this.parents(".works-wrapper").width()/2 - windowWidth/2;
+			
+			var thisMatrixValue = $this.parents(".works-wrapper").unmatrix();
+			var thisTransX = thisMatrixValue[0].x;
+			
+			scrollToPos = $this.parents(".works-wrapper").offset().left + $("#scroller-1-inner").scrollLeft() + $this.parents(".works-wrapper").width()/2 - windowWidth/2 - thisTransX;
 			if (option.scroll) {
 				$("#scroller-1-inner").scrollToMotion(scrollToPos,option.duration,{easing:"easeOutSine", direction:"x", interruptible:false});
 			};
