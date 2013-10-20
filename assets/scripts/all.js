@@ -900,27 +900,23 @@ $(document).ready(function () {
 						if (scrollerY === true) {
 							scrollY -= deltaY;
 							if (scrollY < 0) {
-								scrollY += -scrollY/2;
+								scrollY += -scrollY/1;
 							};
 							if (scrollY > scrollYMax) {
-								scrollY -= (scrollY - scrollYMax)/2
+								scrollY -= (scrollY - scrollYMax)/1;
 							};
 						};
 						
 						if (scrollerX === true) {
 							scrollX += deltaX;
 							if (scrollX < -scrollXMax) {
-								scrollX += (-scrollXMax - scrollX)/2;
+								scrollX += (-scrollXMax - scrollX)/1;
 							};
 							if (scrollX > scrollXMax) {
-								scrollX -= (scrollX - scrollXMax)/2;
+								scrollX -= (scrollX - scrollXMax)/1;
 							};
 						};
 						
-						thisWorksFocusScroller.css({
-							"transition" : "none",
-							"transform": "translate3d(" + (scrollerTransX + -scrollX) + "px," + (scrollerTransY + -scrollY) + "px,0)",
-						});
 					})
 					
 					
