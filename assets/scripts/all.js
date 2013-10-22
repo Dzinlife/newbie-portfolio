@@ -262,7 +262,7 @@ $(document).ready(function () {
 	preventMacBackFwdGesture($('#scroller-0-inner, #scroller-1-inner'));
 	preventMacBackFwdGesture($('#dock-wrapper, #scroller-2'),false);
 	
-	if (window.navigator.userAgent.match(/MSIE/) !== "Mac") {
+	if (window.navigator.userAgent.match(/Mac/) != "Mac") {
 		$("#contact-imsg").css("display", "none")
 	}
 	
