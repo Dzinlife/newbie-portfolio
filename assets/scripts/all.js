@@ -261,7 +261,7 @@ $(document).ready(function () {
 		})
 	}
 	preventMacBackFwdGesture($('#scroller-0-inner, #scroller-1-inner'));
-	preventMacBackFwdGesture($('#dock-wrapper'),false);
+	preventMacBackFwdGesture($('#dock-wrapper, #scroller-2'),false);
 	
 	var drawPeriodBaseline = SVG('period-baseline');
 	var drawPeriodBaseline_line = drawPeriodBaseline.line(0, 0.75, 700, 0.75).stroke({ width: 0.5, color: "rgba(0,0,0,0.2)"});
