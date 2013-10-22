@@ -47,13 +47,14 @@ h2{
 }
 
 #black{
+	display: none;
+	opacity: 0;
 	position: fixed;
 	top: -1000px;
 	left: 0px;
 	right: -10000px;
 	bottom: -1000px;
 	background-color: rgba(0,0,0,0.5);
-	opacity: 0;
 	.transition(0.3s);
 	.transform(translateZ(0));
 }
@@ -121,7 +122,6 @@ h2{
 	position: relative;
 	overflow-x: auto;
 	overflow-y: hidden;
-	-webkit-overflow-scrolling: touch;
 	height: 450px;
 }
 
@@ -140,9 +140,8 @@ h2{
 	position: relative;
 	padding-top: 420px;
 	height: 1200px;
-	overflow-x: auto;
+	overflow-x: scroll;
 	overflow-y: hidden;
-	-webkit-overflow-scrolling: touch;
 }
 
 #scroller-2{
@@ -150,6 +149,7 @@ h2{
 	white-space: nowrap;
 	font-size: 0;
 	overflow: hidden;
+	padding-top: 6px;
 }
 
 
@@ -798,7 +798,7 @@ h2{
 	height: 100px;
 	width: 500px;
 	margin-top: 70px;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 300;
 	margin-left: 18px;
 	line-height: 28px;
@@ -810,42 +810,12 @@ h2{
 			cursor: pointer;
 		}
 	}
-}
-
-#contact-email{
-	position: relative;
-	top: 4px;
-	a{
+	.contact-item{
+		position: relative;
+	}
+	
+	span, a{
 		position: absolute;
 		left: 38px;
-		top: -1px;
-	}
-}
-
-#contact-tel{
-	position: relative;
-	top: 4px;
-	span{
-		position: absolute;
-		left: 37px;
-		top: 1px;
-	}
-}
-#contact-dribbble{
-	position: relative;
-	top: 4px;
-	span{
-		position: absolute;
-		left: 37px;
-		top: 1px;
-	}
-}
-#contact-twitter{
-	position: relative;
-	top: 4px;
-	span{
-		position: absolute;
-		left: 37px;
-		top: 1px;
 	}
 }

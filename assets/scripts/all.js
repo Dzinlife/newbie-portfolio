@@ -755,7 +755,8 @@ $(document).ready(function () {
 		
 		_method.galleryOn = function () {			
 			$("#container-0, #container-2").css("z-index", "0");
-			$("#black").css("opacity", "1");
+			$("#black").css("display","block");
+			$("#black").css("opacity","1");
 			dockBottom().open()
 			
 			$("#scroller-1-inner").on("touchstart", function () {
@@ -768,7 +769,8 @@ $(document).ready(function () {
 			worksFocusWrapperInner.css("opacity", 0.4);
 		}
 		_method.galleryOff = function () {
-			$("#black").css("opacity", "0");
+			$("#black").css("opacity", 0);
+			setTimeout(function () {$("#black").css("display", "none")}, 300)
 			$("#scroller-1-inner").unbind("touchstart touchend touchmove");
 			$("#focus-nav").fadeOut(300, function () {
 				$("#container-0, #container-2").css("z-index", "3");
