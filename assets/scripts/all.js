@@ -195,73 +195,76 @@ $.fn.extend({
 //	}	
 //})
 
-
+function preventMacBackFwdGesture(element, scrollable) {
+	if (scrollable === undefined) {
+		var scrollable = true;
+	}
+	$(element).each(function () {
+		var $this = $(this);
+		var scrollDirection;
+		$this.mousewheel(function(event, delta, deltaX, deltaY) {
+		    if (Math.abs(deltaX) < Math.abs(deltaY)) {
+		    	scrollDirection = "vertical";
+		    }else if (deltaX > 0) {
+		    	scrollDirection = "right";
+		    }else if (deltaX < 0) {
+		    	scrollDirection = "left";
+		    };
+		});
+		
+		function scrollLeftMax(element) {
+			return element[0].scrollWidth - element[0].clientWidth;
+		}
+		
+		var _method = {};
+		_method.scrollable = function () {
+			$this.on('mousewheel', function(e){
+				if (scrollDirection === "vertical"){
+					return;
+				}else {
+					if ($this.scrollLeft() === 0) {
+						if (scrollDirection === "right") {
+							return;
+						}else {					
+							e.preventDefault();
+						};
+					};
+					
+					if ($this.scrollLeft() === scrollLeftMax($this) ) {
+						if (scrollDirection === "left") {
+							return;
+						}else {					
+							e.preventDefault();
+						};
+					};
+				}
+			});
+		}
+		
+		_method.unscrollable = function () {
+			$this.on("mousewheel", function (e) {
+				if (scrollDirection !== "vertical") {
+					e.preventDefault();
+				};
+			});
+		}
+		
+		if (scrollable) {
+			_method.scrollable();
+		}else {
+			_method.unscrollable();
+		}
+	})
+}
 
 $(document).ready(function () {
 	
-	function preventMacBackFwdGesture(element, scrollable) {
-		if (scrollable === undefined) {
-			var scrollable = true;
-		}
-		$(element).each(function () {
-			var $this = $(this);
-			var scrollDirection;
-			$this.mousewheel(function(event, delta, deltaX, deltaY) {
-			    if (Math.abs(deltaX) < Math.abs(deltaY)) {
-			    	scrollDirection = "vertical";
-			    }else if (deltaX > 0) {
-			    	scrollDirection = "right";
-			    }else if (deltaX < 0) {
-			    	scrollDirection = "left";
-			    };
-			});
-			
-			function scrollLeftMax(element) {
-				return element[0].scrollWidth - element[0].clientWidth;
-			}
-			
-			var _method = {};
-			_method.scrollable = function () {
-				$this.on('mousewheel', function(e){
-					if (scrollDirection === "vertical"){
-						return;
-					}else {
-						if ($this.scrollLeft() === 0) {
-							if (scrollDirection === "right") {
-								return;
-							}else {					
-								e.preventDefault();
-							};
-						};
-						
-						if ($this.scrollLeft() === scrollLeftMax($this) ) {
-							if (scrollDirection === "left") {
-								return;
-							}else {					
-								e.preventDefault();
-							};
-						};
-					}
-				});
-			}
-			
-			_method.unscrollable = function () {
-				$this.on("mousewheel", function (e) {
-					if (scrollDirection !== "vertical") {
-						e.preventDefault();
-					};
-				});
-			}
-			
-			if (scrollable) {
-				_method.scrollable();
-			}else {
-				_method.unscrollable();
-			}
-		})
-	}
 	preventMacBackFwdGesture($('#scroller-0-inner, #scroller-1-inner'));
 	preventMacBackFwdGesture($('#dock-wrapper, #scroller-2'),false);
+	
+	if (window.navigator.userAgent.match(/MSIE/) !== "Mac") {
+		$("#contact-imsg").css("display", "none")
+	}
 	
 	var drawPeriodBaseline = SVG('period-baseline');
 	var drawPeriodBaseline_line = drawPeriodBaseline.line(0, 0.75, 700, 0.75).stroke({ width: 0.5, color: "rgba(0,0,0,0.2)"});
