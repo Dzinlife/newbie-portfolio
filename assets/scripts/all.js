@@ -631,6 +631,9 @@ $(document).ready(function () {
 		worksFocus().galleryOff();
 		dock().close();
 	});
+	$("#black").click(function () {
+		worksFocus(worksOpened).play();
+	})
 	$("body").on("worksOpen", function (e,worksOpenedIndex) {
 		if (worksOpenedIndex === 0) {
 			$("#focus-nav-prev").hide();
