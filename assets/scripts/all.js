@@ -471,7 +471,7 @@ $(document).ready(function () {
 			
 			
 			//时间戳位移
-			$(".year-2012").css("transform", "translateX(" + (($("#period-3").data().currentPos - $("#period-2").data().currentPos) * 0.375 + $("#period-2").data().currentPos) + "px,0,0)");
+			$(".year-2012").css("transform", "translate3d(" + (($("#period-3").data().currentPos - $("#period-2").data().currentPos) * 0.375 + $("#period-2").data().currentPos) + "px,0,0)");
 			$(".year-2013").css("transform", "translate3d(" + ($("#period-3").data().currentPos + 150) + "px,0,0)");
 			
 			periodIntervalControl().open();
