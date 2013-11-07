@@ -845,8 +845,8 @@ $(document).ready(function () {
 			var thisWorksFocusScroller = $this.parents(".works-focus-scroller");
 			var transX = thisWorksFocusWrapper.data().transX;
 			var transY = -$this[0].getBoundingClientRect().top + (windowHeight - 40 - $this.data().height)/2;
-			transY = Math.round(transY);
 			transY += scrollYDistance;
+			transY = Math.round(transY);
 			var scale = $this.data().scale;
 			_method.open = function () {
 				$this.parents(".works-focus-wrapper").css("transition", option.duration/1000 + "s ease-out");
@@ -890,17 +890,16 @@ $(document).ready(function () {
 						wrapperTransY = -$this[0].getBoundingClientRect().top + 16;
 					}
 					
-					
-					wrapperTransX = Math.round(wrapperTransX);
-					wrapperTransY = Math.round(wrapperTransY);
 					if (scrollerY) {
 						wrapperTransY += scrollYDistance;
 					}
 					
+					wrapperTransX = Math.round(wrapperTransX);
+					wrapperTransY = Math.round(wrapperTransY);
+					
 					thisWorksFocusWrapper.css({
 						"transform" : "translate3d(" + wrapperTransX + "px," + wrapperTransY + "px,0)",
 					});
-					
 					
 					
 					var scrollX = 0;
