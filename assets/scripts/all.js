@@ -831,7 +831,7 @@ $(document).ready(function () {
 				$("#dock-wrapper").css("transform", "translate3d(0," + dockTransY + "px,0)");
 			}
 			_method.close = function () {
-				$("#dock-wrapper").removeAttr("style");
+				$("#dock-wrapper").css("transform", "translate3d(0,0,0)");
 			}
 			return _method;
 		};
