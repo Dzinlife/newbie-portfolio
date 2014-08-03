@@ -587,11 +587,11 @@ $(document).ready(function () {
 			$this.css("opacity", "1");
 			$this.addClass("skills-tab-focus");
 			$("#skills-brief").css({
-				// "transform": "perspective(200) translateZ(-50px)",
+				"transform": "perspective(200px) translateZ(-30px)",
 				"opacity": "0"
 			});
 			$("#skills-detail-container").css({
-				"transform": "perspective(200) translateZ(0)",
+				"transform": "perspective(200px) translateZ(0px)",
 				"opacity": "1"
 			});
 			$("#skills-detail").css("opacity", "1");
@@ -603,11 +603,11 @@ $(document).ready(function () {
 			$(".skills-tab").css("opacity", "0.6");
 			skillOpened.removeClass("skills-tab-focus");
 			$("#skills-brief").css({
-				"transform": "perspective(200) translateZ(0)",
+				"transform": "perspective(200px) translateZ(0)",
 				"opacity": "1"
 			});
 			$("#skills-detail-container").css({
-				"transform": "perspective(200) translateZ(50)",
+				"transform": "perspective(200px) translateZ(30px)",
 				"opacity": "0"
 			});
 			$("#skills-detail").css("opacity", "0");
