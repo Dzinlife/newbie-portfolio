@@ -587,7 +587,7 @@ $(document).ready(function () {
 			$this.css("opacity", "1");
 			$this.addClass("skills-tab-focus");
 			$("#skills-brief").css({
-				"transform": "perspective(200) translateZ(-50px)",
+				// "transform": "perspective(200) translateZ(-50px)",
 				"opacity": "0"
 			});
 			$("#skills-detail-container").css({
